@@ -5,6 +5,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
 import javafx.scene.control.ListView;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ToDoListAppTest extends ApplicationTest {
@@ -15,11 +16,10 @@ public class ToDoListAppTest extends ApplicationTest {
     }
 
     @Test
-    public void testAddTask() {
+    void testAddTask() {
         clickOn("#taskInput");
         write("Test Task 1");
         clickOn("#addButton");
-
         WaitForAsyncUtils.waitForFxEvents();
 
         ListView<String> listView = lookup("#taskList").query();
@@ -28,11 +28,10 @@ public class ToDoListAppTest extends ApplicationTest {
     }
 
     @Test
-    public void testRemoveTask() {
+    void testRemoveTask() {
         clickOn("#taskInput");
         write("Test Task 2");
         clickOn("#addButton");
-
         WaitForAsyncUtils.waitForFxEvents();
 
         ListView<String> listView = lookup("#taskList").query();
@@ -41,7 +40,6 @@ public class ToDoListAppTest extends ApplicationTest {
 
         listView.getSelectionModel().select("Test Task 2");
         clickOn("#deleteButton");
-
         WaitForAsyncUtils.waitForFxEvents();
 
         System.out.println("Список задач після видалення: " + listView.getItems());
