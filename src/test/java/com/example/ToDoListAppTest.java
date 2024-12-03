@@ -16,21 +16,19 @@ public class ToDoListAppTest extends ApplicationTest {
     }
 
     @Test
-    void testAddTask() {
+    public void testAddTask() {
         clickOn("#taskInput");
         write("Test Task 1");
-
         clickOn("#addButton");
 
         WaitForAsyncUtils.waitForFxEvents();
 
         ListView<String> listView = lookup("#taskList").query();
-
-        assertFalse(listView.getItems().contains("Test Task 1"), "Завдання не додано до списку!");
+        assertTrue(listView.getItems().contains("Test Task 1"), "Завдання не додано до списку!");
     }
 
     @Test
-    void testRemoveTask() {
+    public void testRemoveTask() {
         clickOn("#taskInput");
         write("Test Task 2");
         clickOn("#addButton");
@@ -38,13 +36,13 @@ public class ToDoListAppTest extends ApplicationTest {
         WaitForAsyncUtils.waitForFxEvents();
 
         ListView<String> listView = lookup("#taskList").query();
-        assertFalse(listView.getItems().contains("Test Task 2"), "Завдання не додано до списку!");
+        assertTrue(listView.getItems().contains("Test Task 2"), "Завдання не додано до списку!");
 
-        clickOn("Test Task 2");
+        listView.getSelectionModel().select("Test Task 2");
         clickOn("#deleteButton");
 
         WaitForAsyncUtils.waitForFxEvents();
 
-        assertTrue(listView.getItems().contains("Test Task 2"), "Завдання не видалено!");
+        assertFalse(listView.getItems().contains("Test Task 2"), "Завдання не видалено!");
     }
 }
