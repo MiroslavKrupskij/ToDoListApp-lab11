@@ -25,6 +25,9 @@ public class ToDoListApp extends Application {
         Button deleteButton = new Button("Видалити");
         deleteButton.setId("deleteButton");
 
+        Button markAsDoneButton = new Button("Маркувати як виконане");
+        markAsDoneButton.setId("markAsDoneButton");
+
         addButton.setOnAction(e -> {
             String task = taskInput.getText();
             if (!task.isEmpty()) {
@@ -38,8 +41,16 @@ public class ToDoListApp extends Application {
             listView.getItems().remove(selected);
         });
 
-        VBox layout = new VBox(10, listView, taskInput, addButton, deleteButton);
-        layout.setId("mainLayout"); // ID для кореневого VBox
+        markAsDoneButton.setOnAction(e -> {
+            String selected = listView.getSelectionModel().getSelectedItem();
+            if (selected != null && !selected.contains("(Виконано)")) {
+                int selectedIndex = listView.getSelectionModel().getSelectedIndex();
+                listView.getItems().set(selectedIndex, selected + " (Виконано)");
+            }
+        });
+
+        VBox layout = new VBox(10, listView, taskInput, addButton, deleteButton, markAsDoneButton);
+        layout.setId("mainLayout");
 
         Scene scene = new Scene(layout, 300, 400);
 

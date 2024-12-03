@@ -45,4 +45,22 @@ public class ToDoListAppTest extends ApplicationTest {
         System.out.println("Список задач після видалення: " + listView.getItems());
         assertFalse(listView.getItems().contains(""), "Завдання не видалено!");
     }
+
+    @Test
+    public void testMarkTaskAsDone() {
+        clickOn("#taskInput");
+        write("Test Task 3");
+        clickOn("#addButton");
+
+        WaitForAsyncUtils.waitForFxEvents();
+
+        ListView<String> listView = lookup("#taskList").query();
+        assertTrue(listView.getItems().contains("Test Task 3"), "Завдання не додано до списку!");
+
+        clickOn("#markAsDoneButton");
+
+        WaitForAsyncUtils.waitForFxEvents();
+
+        assertTrue(listView.getItems().contains("Test Task 3 (Виконано)"), "Завдання не марковано як виконане!");
+    }
 }
