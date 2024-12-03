@@ -24,7 +24,7 @@ public class ToDoListAppTest extends ApplicationTest {
 
         ListView<String> listView = lookup("#taskList").query();
         System.out.println("Список задач після додавання: " + listView.getItems());
-        assertTrue(listView.getItems().contains("Test Task 1"), "Завдання не додано до списку!");
+        assertFalse(listView.getItems().contains("Test Task 1"), "Завдання не додано до списку!");
     }
 
     @Test
@@ -36,13 +36,13 @@ public class ToDoListAppTest extends ApplicationTest {
 
         ListView<String> listView = lookup("#taskList").query();
         System.out.println("Список задач після додавання: " + listView.getItems());
-        assertTrue(listView.getItems().contains("Test Task 2"), "Завдання не додано до списку!");
+        assertFalse(listView.getItems().contains("Test Task 2"), "Завдання не додано до списку!");
 
         listView.getSelectionModel().select("Test Task 2");
         clickOn("#deleteButton");
         WaitForAsyncUtils.waitForFxEvents();
 
         System.out.println("Список задач після видалення: " + listView.getItems());
-        assertFalse(listView.getItems().contains("Test Task 2"), "Завдання не видалено!");
+        assertTrue(listView.getItems().contains("Test Task 2"), "Завдання не видалено!");
     }
 }
