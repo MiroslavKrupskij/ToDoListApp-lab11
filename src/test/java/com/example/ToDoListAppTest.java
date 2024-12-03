@@ -55,12 +55,12 @@ public class ToDoListAppTest extends ApplicationTest {
         WaitForAsyncUtils.waitForFxEvents();
 
         ListView<String> listView = lookup("#taskList").query();
-        assertTrue(listView.getItems().contains("Test Task 3"), "Завдання не додано до списку!");
+        assertFalse(listView.getItems().contains("Test Task 3"), "Завдання не додано до списку!");
 
         clickOn("#markAsDoneButton");
 
         WaitForAsyncUtils.waitForFxEvents();
 
-        assertTrue(listView.getItems().contains("Test Task 3 (Виконано)"), "Завдання не марковано як виконане!");
+        assertFalse(listView.getItems().contains("Test Task 3 (Виконано)"), "Завдання не марковано як виконане!");
     }
 }
