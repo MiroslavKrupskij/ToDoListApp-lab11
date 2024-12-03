@@ -1,6 +1,5 @@
 package com.example;
 
-import com.example.ToDoListApp;
 import javafx.stage.Stage;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
@@ -18,27 +17,27 @@ public class ToDoListAppTest extends ApplicationTest {
 
     @Test
     void testAddTask() {
-        clickOn(".text-field");
+        clickOn("#taskInput");
         write("Test Task 1");
 
         clickOn("#addButton");
 
         WaitForAsyncUtils.waitForFxEvents();
 
-        ListView<String> listView = lookup(".list-view").query();
+        ListView<String> listView = lookup("#taskList").query();
 
         assertTrue(listView.getItems().contains("Test Task 1"), "Завдання не додано до списку!");
     }
 
     @Test
     void testRemoveTask() {
-        clickOn(".text-field");
+        clickOn("#taskInput");
         write("Test Task 2");
         clickOn("#addButton");
 
         WaitForAsyncUtils.waitForFxEvents();
 
-        ListView<String> listView = lookup(".list-view").query();
+        ListView<String> listView = lookup("#taskList").query();
         assertTrue(listView.getItems().contains("Test Task 2"), "Завдання не додано до списку!");
 
         clickOn("Test Task 2");

@@ -14,9 +14,14 @@ public class ToDoListApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         ListView<String> listView = new ListView<>();
+        listView.setId("taskList");
+
         TextField taskInput = new TextField();
+        taskInput.setId("taskInput");
+
         Button addButton = new Button("Додати");
         addButton.setId("addButton");
+
         Button deleteButton = new Button("Видалити");
         deleteButton.setId("deleteButton");
 
@@ -34,6 +39,8 @@ public class ToDoListApp extends Application {
         });
 
         VBox layout = new VBox(10, listView, taskInput, addButton, deleteButton);
+        layout.setId("mainLayout"); // ID для кореневого VBox
+
         Scene scene = new Scene(layout, 300, 400);
 
         primaryStage.setTitle("To Do List");
