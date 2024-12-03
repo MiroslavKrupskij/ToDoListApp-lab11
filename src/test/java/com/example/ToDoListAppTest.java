@@ -5,7 +5,6 @@ import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
 import javafx.scene.control.ListView;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ToDoListAppTest extends ApplicationTest {
@@ -24,6 +23,7 @@ public class ToDoListAppTest extends ApplicationTest {
         WaitForAsyncUtils.waitForFxEvents();
 
         ListView<String> listView = lookup("#taskList").query();
+        System.out.println("Список задач після додавання: " + listView.getItems());
         assertTrue(listView.getItems().contains("Test Task 1"), "Завдання не додано до списку!");
     }
 
@@ -36,6 +36,7 @@ public class ToDoListAppTest extends ApplicationTest {
         WaitForAsyncUtils.waitForFxEvents();
 
         ListView<String> listView = lookup("#taskList").query();
+        System.out.println("Список задач після додавання: " + listView.getItems());
         assertTrue(listView.getItems().contains("Test Task 2"), "Завдання не додано до списку!");
 
         listView.getSelectionModel().select("Test Task 2");
@@ -43,6 +44,7 @@ public class ToDoListAppTest extends ApplicationTest {
 
         WaitForAsyncUtils.waitForFxEvents();
 
+        System.out.println("Список задач після видалення: " + listView.getItems());
         assertFalse(listView.getItems().contains("Test Task 2"), "Завдання не видалено!");
     }
 }
