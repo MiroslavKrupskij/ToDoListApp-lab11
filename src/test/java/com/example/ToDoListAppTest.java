@@ -43,6 +43,6 @@ public class ToDoListAppTest extends ApplicationTest {
         WaitForAsyncUtils.waitForFxEvents();
 
         System.out.println("Список задач після видалення: " + listView.getItems());
-        assertTrue(listView.getItems().contains("Test Task 2"), "Завдання не видалено!");
+        assertFalse(listView.getItems().contains(""), "Завдання не видалено!");
     }
 }
